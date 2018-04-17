@@ -1,39 +1,35 @@
-
-import static com.oracle.nio.BufferSecrets.instance;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
 public class Pratica31 {
 
-     static int diascorridos(Date d1, Date d2){
-    return (int) ((d1.getTime() - d2.getTime())/(100*60*60*24)) ;
-}
+    private static Date inicio = new Date();
+    private static String meuNome = "Filipe Cabral Antonio";
+    private static GregorianCalendar dataNascimento = new GregorianCalendar(1999, Calendar.NOVEMBER, 22);
+    private static Date fim;
+
     public static void main(String[] args) {
-     
-       
-        Date inicio= new Date();
-        
-    String nome = "FILIPE CABRAL ANTONIO";
-    
-        System.out.println(nome.toUpperCase());
-        
-        System.out.println(nome.toUpperCase().substring(14, 21)+", " + nome.toUpperCase().substring(0, 1)+ "." + nome.toUpperCase().substring(7, 8)  );
-        
-        SimpleDateFormat sdf= new SimpleDateFormat("d");
-        
-        GregorianCalendar dataNascimento= new GregorianCalendar(1990,2,26);
-        GregorianCalendar hoje = new GregorianCalendar();
-        
-       int dia=GregorianCalendar.DAY_OF_MONTH;
-        int tempo = diascorridos( hoje.getTime(),dataNascimento.getTime());
-        System.out.println( "dias "+tempo);
-        
-        
-        
-        Date fim = new Date();
-        long tempocorrido = (fim.getTime()-inicio.getTime())*1000*60*60*24;
-        System.out.println(tempocorrido);
-    }   
+        String ultimoNome;
+        String resultado = "";
+        System.out.println(meuNome.toUpperCase());
+        ultimoNome = meuNome.substring(meuNome.indexOf(' ') + 1);
+        resultado = resultado + meuNome.toUpperCase().charAt(0) + '.' + ' ';
+        while (ultimoNome.indexOf(' ') != -1) {
+            resultado = resultado + ultimoNome.toUpperCase().charAt(0) + '.' + ' ';
+            ultimoNome = ultimoNome.substring(ultimoNome.indexOf(' ') + 1);
+        }
+        ultimoNome = ultimoNome.toUpperCase().charAt(0) + ultimoNome.substring(1).toLowerCase();
+        resultado = ultimoNome + ',' + ' ' + resultado;
+        System.out.println(resultado);
+        long nascimentoMs;
+        long atualMs;
+        GregorianCalendar atual = new GregorianCalendar();
+        nascimentoMs = dataNascimento.getTime().getTime();
+        atualMs = atual.getTime().getTime();
+        System.out.println((atualMs - nascimentoMs) / 86400000);
+        fim = new Date();
+        System.out.println(fim.getTime() - inicio.getTime());
+    }
+
 }
